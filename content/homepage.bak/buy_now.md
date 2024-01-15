@@ -5,7 +5,7 @@ weight: 3
 ---
 
 
-Site undergoing maintenance, please check again later.
+<!--- Site undergoing maintenance, please check again later.
 
 <!---
 Click on the images below to order ReGenerate quickly or visit our [online shop](https://shop.regeneratenow.co.za/products/account) to register as customer and order.

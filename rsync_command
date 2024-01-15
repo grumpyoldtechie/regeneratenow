@@ -1,0 +1,1 @@
+rsync -a --verbose --progress --delete  public/ regeneratenow@vrieskas.menusis.com:/usr/local/www/nginx/regeneratenow.co.za/

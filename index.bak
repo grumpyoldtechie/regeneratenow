@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{ $headless := .Site.GetPage "/homepage" }}
+{{ $sections := $headless.Resources.ByType "page" }}
+<header id="site-head" {{ with .Params.header_image }}style="background-image: url({{ . }})"{{ end }}> 
+<!--
+<header > 
+<picture >
+  <source media="(max-width: 576px)" srcset="images/Colorbanner320.png">
+  <source media="(max-width: 768px)" srcset="images/Colorbanner576.png">
+  <source media="(max-width: 922px)" srcset="images/Colorbanner768.png">
+  <source media="(min-width: 923px)" srcset="images/Colorbanner992.png">
+  <img src="images/Colorbanner768.png" alt="ReGenerate: Rewind and Recover" style="width:100%;height:auto;align:center;">
+</picture>  
+-->
+   <div class="vertical">
+        <div id="site-head-content" class="inner">
+
+            {{ with .Params.header_headline }}<h1 class="blog-title">{{ . }}</h1>{{ end }}
+            {{ with .Params.header_subheadline }}<h2 class="blog-description">{{ . }}</h2>{{ end }}
+
+            {{ range where $sections ".Params.header_menu" "eq" true }}
+                 <a class='btn site-menu' data-title-anchor='{{ anchorize .Title }}'>{{ .Title }}</a>
+            {{ end }}
+         <i id='header-arrow' class="fa fa-angle-down"></i> 
+        </div>
+
+
+</header>
+<main class="content" role="main">
+
+    <div class='fixed-nav'>
+    </div>
+    {{ range $index_val, $elem_val := $sections }}
+        <div class='post-holder'>
+            <article id='{{ anchorize .Title }}' class='post {{ if eq $index_val 0 }}first{{ else }}{{ if eq (add $index_val 1) (len $sections) }}last{{ end }}{{ end }}'>
+                <header class="post-header">
+                    <h2 class="post-title">{{ .Title }}</h2>
+                </header>
+                <section class="post-content">
+                    {{ .Content }}
+                </section>
+            </article>
+            <div class='post-after'></div>
+        </div>
+    {{ end }}
+</main>
+{{ end }}
